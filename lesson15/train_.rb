@@ -1,6 +1,5 @@
 class Train
   attr_reader :train_number, :speed, :wagons
-  attr_accessor :train_type
 
   def initialize(values = {})
     @train_number = values[:train_number]
@@ -9,12 +8,16 @@ class Train
     @wagons = []
   end
 
-  def add_speed(additional_speed)
-    @speed += additional_speed
+  def def_train_type
+    raise NotImplementedError
   end
 
-  def stop
-    @speed = 0
+  def add_speed(speed)
+    @speed += speed
+  end
+
+  def increase_speed(speed)
+    @speed -= speed if (@speed > 0) && (@speed > speed)
   end
 
   def add_wagon(wagon_type)
@@ -48,10 +51,6 @@ class Train
 
   private
 
-  def def_train_type
-    raise NotImplementedError
-  end
-
   def stopped?
     @speed.zero?
   end
@@ -67,4 +66,4 @@ class Train
   def previous_station
     @route.stations[@station_id - 1]
   end
-end 
+end

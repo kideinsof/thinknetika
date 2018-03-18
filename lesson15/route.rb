@@ -10,6 +10,6 @@ class Route
   end
 
   def delete_station(station)
-    stations.delete(station)
+    stations.delete(station) if (stations.first != stations(station)) || (stations.last != stations(station))
   end
 end

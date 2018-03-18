@@ -35,7 +35,8 @@ class Menu
            '1. Создать станцию',
            '2. Удалить станцию',
            '3. Вывести список доступных станций',
-           '4. Вернуться в основное меню'
+           '4. Cписок поездов на станции',
+           '5. Вернуться в основное меню'
       case gets.strip.to_i
       when 1 then return station_create
       when 2 then return station_delete
@@ -216,12 +217,14 @@ class Menu
       when 1
         print 'Увеличить скорость до, км/ч: '
         current_train.add_speed(gets.strip.to_i)
+        puts "Текущая скорость: #{current_train.speed} км/ч"
       when 2
         current_train.move_next_station
       when 3
         current_train.move_previous_station
       when 4
-        current_train.stop
+        print 'Уменьшить скорость на, км/ч: '
+        current_train.increase_speed(gets.strip.to_i)
         puts "Текущая скорость: #{current_train.speed} км/ч"
       when 5
         return menu_main
